@@ -11,7 +11,7 @@ node{
         }
         post {
             always {
-                junit 'test-reports/results.xml'
+                junit '/home/test-reports/results.xml'
             }
         }
     }
