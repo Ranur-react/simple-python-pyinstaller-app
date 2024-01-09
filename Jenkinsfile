@@ -13,7 +13,7 @@ node{
     }
      post {
             always {
-                junit '/home/test-reports/results.xml'
+                junit '/home/Documents/ID-Botcamp/projeect/simple-python-pyinstaller-app/test-reports/results.xml'
             }
         }
     
