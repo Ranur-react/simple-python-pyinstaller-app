@@ -11,9 +11,7 @@ node{
         }
     }
     stage('delivery'){
-        docker.image('cdrx/pyinstaller-linux:python3').inside{
-                sh 'pyinstaller --onefile sources/add2vals.py'
-        }
+        docker.image('cdrx/pyinstaller-linux:python3')
 
     }
     
