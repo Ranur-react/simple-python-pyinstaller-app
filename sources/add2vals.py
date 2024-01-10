@@ -1,5 +1,5 @@
 '''
-change somethink.
+adjustment the pipeline script slightly, limitations to the Test stage only .
 '''
 
 import sys
