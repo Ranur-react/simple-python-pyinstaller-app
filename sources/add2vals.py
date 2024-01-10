@@ -2,6 +2,8 @@
 adjustment the pipeline script : 
     -limitations to the Test stage only .
     - move the script "checkout scm" above of all the stages
+    - fixing script exporting the report of stage Test
+    - Testing the effectiveness of the CRON expression  on the first minute
 '''
 
 import sys
