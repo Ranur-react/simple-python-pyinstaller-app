@@ -4,6 +4,7 @@ adjustment the pipeline script :
     - move the script "checkout scm" above of all the stages
     - fixing script exporting the report of stage Test
     - Testing the effectiveness of the CRON expression  on the first minute
+    - Testing the effetiveness of the CRON expression on the second time, with a-2 minute interval during source code management checking with scm.
 '''
 
 import sys
