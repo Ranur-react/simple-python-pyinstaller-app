@@ -1,5 +1,7 @@
 '''
-adjustment the pipeline script slightly, limitations to the Test stage only .
+adjustment the pipeline script : 
+    -limitations to the Test stage only .
+    - move the script "checkout scm" above of all the stages
 '''
 
 import sys
