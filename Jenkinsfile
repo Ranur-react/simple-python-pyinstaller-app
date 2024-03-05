@@ -20,7 +20,6 @@
 
 //     }
 // }
-
 node {
     try {
         // Checkout source code from SCM
@@ -43,9 +42,18 @@ node {
 
         // Deploy stage
         stage('Deploy') {
-            docker.image('cdrx/pyinstaller-linux:python2').withRun {
-                sh 'pyinstaller --onefile sources/add2vals.py'
-                // Additional deployment steps can be added here
+            // Run the Docker container and keep it running until deployment is done
+            def container = docker.image('cdrx/pyinstaller-linux:python2').run('-d', '--name my-container', '/bin/sh', '-c', 'while true; do sleep 60; done')
+            try {
+                // Execute deployment commands inside the Docker container
+                container.inside {
+                    sh 'pyinstaller --onefile sources/add2vals.py'
+                    // Additional deployment steps can be added here
+                }
+            } finally {
+                // Stop and remove the Docker container after deployment is done
+                container.stop()
+                container.remove(force: true)
             }
             // Wait for user input to proceed
             input message: 'Finished using the website? (Click "Proceed" to continue)'
