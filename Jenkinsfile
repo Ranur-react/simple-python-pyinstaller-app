@@ -18,4 +18,5 @@ node{
                 input message: 'Finished using the website? (Click "Proceed" to continue)'
                 archiveArtifacts 'dist/add2vals'
         }
+    }
 }
