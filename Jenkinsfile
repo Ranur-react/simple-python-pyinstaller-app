@@ -44,7 +44,7 @@ node {
         // Deploy stage
         stage('Deploy') {
             // Run the Docker container and keep it running until deployment is done
-            def container = docker.image('cdrx/pyinstaller-linux:python2').run('--detach', '--name', 'my-container', '/bin/sh', '-c', 'while true; do sleep 60; done')
+            def container = docker.image('cdrx/pyinstaller-linux:python2').run('-d', '--name', 'my-container', '/bin/sh', '-c', 'while true; do sleep 60; done')
             try {
                 // Execute deployment commands inside the Docker container
                 container.inside {
@@ -58,6 +58,8 @@ node {
             }
             // Wait for user input to proceed
             input message: 'Finished using the website? (Click "Proceed" to continue)'
+        }
+
         }
 
     } catch (Exception e) {
