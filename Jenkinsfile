@@ -45,14 +45,16 @@ node {
         stage('Deploy') {
             // Run the Docker container and keep it running until deployment is done
             def container = docker.image('cdrx/pyinstaller-linux:python2')
-            .run('-d')
+            .run('-d','--name', 'pyinstallerContainer')
             // .run('-d', '--name', 'pyinstaller', '/bin/sh', '-c', 'while true; do sleep 60; done')
             try {
                 // Execute deployment commands inside the Docker container
-                container.inside {
-                    sh 'pyinstaller --onefile sources/add2vals.py'
+                // container.inside {
+                // Execute deployment commands inside the Docker container
+                sh "docker exec pyinstallerContainer pyinstaller --onefile sources/add2vals.py"
+                // Additional deployment steps can be added here
                     // Additional deployment steps can be added here
-                }
+                // }
             } finally {
                 // Stop and remove the Docker container after deployment is done
                 container.stop()
