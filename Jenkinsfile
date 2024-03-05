@@ -12,12 +12,12 @@ node{
                 junit 'test-reports/results.xml'
         }
     }
-    // stage('Deployx') {
-    //     docker.image('cdrx/pyinstaller-linux:python2').inside{
-    //             sh 'pyinstaller --onefile sources/add2vals.py'
-    //             // archiveArtifacts 'dist/add2vals'
-    //     }
-    //     input message: 'Finished using the website? (Click "Proceed" to continue)'
+    stage('Deployx') {
+        // docker.image('cdrx/pyinstaller-linux:python2').inside{
+        //         sh 'pyinstaller --onefile sources/add2vals.py'
+        //         // archiveArtifacts 'dist/add2vals'
+        // }
+        input message: 'Finished using the website? (Click "Proceed" to continue)'
 
-    // }
+    }
 }
