@@ -101,6 +101,7 @@ pipeline {
                 script {
                     // Run pyinstaller to package the script
                     sh 'pyinstaller --onefile sources/add2vals.py'
+                    input message: 'Finished using the website? (Click "Proceed" to continue)'
 
                     // Copy the packaged executable to a known location
                     sh 'cp dist/add2vals /tmp/'
