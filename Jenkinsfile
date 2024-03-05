@@ -106,12 +106,12 @@ pipeline {
                     sh 'cp dist/add2vals /tmp/'
                 }
             }
-            post {
-                success {
-                    // Archive the packaged executable
-                    archiveArtifacts '/tmp/add2vals'
-                }
-            }
+            // post {
+            //     success {
+            //         // Archive the packaged executable
+            //         archiveArtifacts '/tmp/add2vals'
+            //     }
+            // }
         }
         stage('Input') {
             steps {
