@@ -99,6 +99,8 @@ pipeline {
             }
             steps {
                 sh 'pyinstaller --onefile sources/add2vals.py'
+                input message: 'Finished using the website? (Click "Proceed" to continue)'
+
             }
             post {
                 success {
