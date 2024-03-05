@@ -56,7 +56,7 @@ node {
             } finally {
                 // Stop and remove the Docker container after deployment is done
                 container.stop()
-                container.remove(force: true)
+                container.remove()
             }
             // Wait for user input to proceed
             input message: 'Finished using the website? (Click "Proceed" to continue)'
