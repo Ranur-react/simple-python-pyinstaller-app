@@ -60,8 +60,6 @@ node {
             input message: 'Finished using the website? (Click "Proceed" to continue)'
         }
 
-        }
-
     } catch (Exception e) {
         // Catch any exceptions and log them
         echo "Error occurred: ${e.message}"
