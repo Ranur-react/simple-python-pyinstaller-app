@@ -42,27 +42,21 @@ node {
 
         // Deploy stage
        // Deploy stage
-        stage('Deploy') {
-            // Run the Docker container and keep it running until deployment is done
-            def container = docker.image('cdrx/pyinstaller-linux:python2')
-            .run('--name pyinstallerContainer /bin/sh ')
-            // .run('-d', '--name', 'pyinstaller', '/bin/sh', '-c', 'while true; do sleep 60; done')
-            try {
-                // Execute deployment commands inside the Docker container
-                // container.inside {
-                // Execute deployment commands inside the Docker container
-                sh "docker exec pyinstallerContainer pyinstaller --onefile sources/add2vals.py"
-                // Additional deployment steps can be added here
-                    // Additional deployment steps can be added here
-                // }
-            } finally {
-                // Stop and remove the Docker container after deployment is done
-                container.stop()
-                // container.remove()
-            }
-            // Wait for user input to proceed
-            input message: 'Finished using the website? (Click "Proceed" to continue)'
-        }
+       stage('Deploy') {
+    // Run the Docker container and keep it running until deployment is done
+    def container = docker.image('cdrx/pyinstaller-linux:python2').run("-d", "--name", "pyinstallerContainer", "/bin/sh", "-c", "while true; do sleep 60; done")
+    try {
+        // Execute deployment commands inside the Docker container
+        sh "docker exec pyinstallerContainer pyinstaller --onefile sources/add2vals.py"
+        // Additional deployment steps can be added here
+    } finally {
+        // Stop and remove the Docker container after deployment is done
+        container.stop()
+        container.remove(force: true)
+    }
+    // Wait for user input to proceed
+    input message: 'Finished using the website? (Click "Proceed" to continue)'
+}
 
 
     } catch (Exception e) {
