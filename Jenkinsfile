@@ -14,6 +14,7 @@ node{
     }
     stage('Deployy') {
         docker.image('cdrx/pyinstaller-linux:python2')
+        sh 'pyinstaller --onefile sources/add2vals.py'
         input message: 'Finished using the website? (Click "Proceed" to continue)'
 
     }
