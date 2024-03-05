@@ -91,20 +91,25 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+      stage('Deploy') {
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2'
                 }
             }
             steps {
-                sh 'pyinstaller --onefile sources/add2vals.py'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
+                script {
+                    // Run pyinstaller to package the script
+                    sh 'pyinstaller --onefile sources/add2vals.py'
 
+                    // Copy the packaged executable to a known location
+                    sh 'cp dist/add2vals /tmp/'
+                }
             }
             post {
                 success {
-                    archiveArtifacts 'dist/add2vals'
+                    // Archive the packaged executable
+                    archiveArtifacts '/tmp/add2vals'
                 }
             }
         }
